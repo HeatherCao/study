@@ -17,6 +17,8 @@
     11.如果有和加载这个Bean的Spring容器相关的BeanPostProcessor对象，执行postProcessAfterInitialization()方法</br>
     12.当要销毁Bean的时候，如果Bean实现了DisposableBean接口，执行destroy()方法。</br>
     13.当要销毁Bean的时候，如果Bean在配置文件中的定义包含destroy-method属性，执行指定的方法。</br>
+  流程图如下：
+    ![avatar](C:\Users\HCAO25\Desktop\bean.jpg)
 
 
 
