@@ -1,9 +1,9 @@
 # week1
 # spring bean
-###定义：
+### 定义：
   组成应用程序的主体及由 Spring IOC 容器所管理的对象</br>
   
-###生命周期概述：
+### 生命周期概述：
     1.Bean容器找到配置文件中 Spring Bean 的定义</br>
     2.Bean容器利用Java Reflection API创建一个Bean的实例</br>
     3.如果涉及到一些属性值 利用set方法设置一些属性值</br>
@@ -23,28 +23,27 @@
 
 
     
-###各种接口方法分类：
+### 各种接口方法分类：
    1.Bean自身的方法: 这个包括了Bean本身调用的方法和通过配置文件中<bean>的init-method和destroy-method指定的方法</br>
    2.Bean级生命周期接口方法: 这个包括了BeanNameAware、BeanFactoryAware、InitializingBean和DiposableBean这些接口的方法</br>
    3.容器级生命周期接口方法: 这个包括了InstantiationAwareBeanPostProcessor 和BeanPostProcessor 这两个接口实现，一般称它们的实现类为“后处理器”</br>
    4.工厂后处理器接口方法: 这个包括了AspectJWeavingEnabler, ConfigurationClassPostProcessor, CustomAutowireConfigurer等等非常有用的工厂后处理器接口的方法。工厂后处理器也是容器级的。在应用上下文装配配置文件之后立即调用。
 
 
-###ApplicationContext解析
+### ApplicationContext解析
   demo
-  ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-config.xml");
-  ctx.getBean("myBean");
-  1.进ClassPathXmlApplicationContext
-   public ClassPathXmlApplicationContext(
-              String[] configLocations, boolean refresh, @Nullable ApplicationContext parent)
-              throws BeansException {
-  
-          //调用父类的构造函数
-          super(parent);
-          //初始化配置xml
-          setConfigLocations(configLocations);
-         //ApplicationContext初始化
-         if (refresh) {
-             refresh();
+  ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-config.xml");</br>
+  ctx.getBean("myBean");</br>
+  1.进ClassPathXmlApplicationContext</br>
+   public ClassPathXmlApplicationContext(</br>
+              String[] configLocations, boolean refresh, @Nullable ApplicationContext parent)</br>
+              throws BeansException {</br>
+          //调用父类的构造函数</br>
+          super(parent);</br>
+          //初始化配置xml</br>
+          setConfigLocations(configLocations);</br>
+         //ApplicationContext初始化</br>
+         if (refresh) {</br>
+             refresh();</br>
          }
      }
