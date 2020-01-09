@@ -30,3 +30,21 @@
    4.工厂后处理器接口方法: 这个包括了AspectJWeavingEnabler, ConfigurationClassPostProcessor, CustomAutowireConfigurer等等非常有用的工厂后处理器接口的方法。工厂后处理器也是容器级的。在应用上下文装配配置文件之后立即调用。
 
 
+###ApplicationContext解析
+  demo
+  ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-config.xml");
+  ctx.getBean("myBean");
+  1.进ClassPathXmlApplicationContext
+   public ClassPathXmlApplicationContext(
+              String[] configLocations, boolean refresh, @Nullable ApplicationContext parent)
+              throws BeansException {
+  
+          //调用父类的构造函数
+          super(parent);
+          //初始化配置xml
+          setConfigLocations(configLocations);
+         //ApplicationContext初始化
+         if (refresh) {
+             refresh();
+         }
+     }
