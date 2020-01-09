@@ -31,9 +31,13 @@
 
 
 ### ApplicationContext解析
+  流程图：</br>
+  ![avatar](https://img-blog.csdn.net/20180627134444238?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTAyMDkyMTc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
   demo
   ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-config.xml");</br>
   ctx.getBean("myBean");</br>
   1.进ClassPathXmlApplicationContext</br>
      ![avatar](C:\Users\HCAO25\Desktop\ClassPathXmlApplicationContext.png)
+  2.进入setConfigLocations(configLocations)，主要作用为初始化配置xml
+  3.进入refresh()方法，主要作用为解析配置的xml信息，将xml路径信息赋值给configLocations
 
