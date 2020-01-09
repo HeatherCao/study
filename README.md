@@ -35,15 +35,5 @@
   ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-config.xml");</br>
   ctx.getBean("myBean");</br>
   1.进ClassPathXmlApplicationContext</br>
-   public ClassPathXmlApplicationContext(</br>
-              String[] configLocations, boolean refresh, @Nullable ApplicationContext parent)</br>
-              throws BeansException {</br>
-          //调用父类的构造函数</br>
-          super(parent);</br>
-          //初始化配置xml</br>
-          setConfigLocations(configLocations);</br>
-         //ApplicationContext初始化</br>
-         if (refresh) {</br>
-             refresh();</br>
-         }
-     }
+     ![avatar](C:\Users\HCAO25\Desktop\ClassPathXmlApplicationContext.png)
+
