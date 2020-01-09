@@ -1,9 +1,9 @@
-# training
-## week1
-### spring bean
-  定义：组成应用程序的主体及由 Spring IOC 容器所管理的对象</br>
+# week1
+# spring bean
+###定义：
+  组成应用程序的主体及由 Spring IOC 容器所管理的对象</br>
   
-  生命周期概述：</br>
+###生命周期概述：
     1.Bean容器找到配置文件中 Spring Bean 的定义</br>
     2.Bean容器利用Java Reflection API创建一个Bean的实例</br>
     3.如果涉及到一些属性值 利用set方法设置一些属性值</br>
@@ -23,7 +23,7 @@
 
 
     
-   各种接口方法分类：</br>
+###各种接口方法分类：
    1.Bean自身的方法: 这个包括了Bean本身调用的方法和通过配置文件中<bean>的init-method和destroy-method指定的方法</br>
    2.Bean级生命周期接口方法: 这个包括了BeanNameAware、BeanFactoryAware、InitializingBean和DiposableBean这些接口的方法</br>
    3.容器级生命周期接口方法: 这个包括了InstantiationAwareBeanPostProcessor 和BeanPostProcessor 这两个接口实现，一般称它们的实现类为“后处理器”</br>
