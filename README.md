@@ -1,8 +1,8 @@
 # training
 ## week1
 ### spring bean
-  定义：组成应用程序的主体及由 Spring IOC 容器所管理的对象
-  生命周期：
+  定义：组成应用程序的主体及由 Spring IOC 容器所管理的对象</br>
+  生命周期：</br>
     1.bean对象的实例化
     2.封装属性，也就是设置properties中的属性值
     3.如果bean实现了BeanNameAware，则执行setBeanName方法,也就是bean中的id值
