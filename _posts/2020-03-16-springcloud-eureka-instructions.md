@@ -3,7 +3,7 @@ layout: post
 title: springcloud组件之一——Eureka的使用
 keywords: Eureka
 description: eureka应用入门
-categories: hi
+categories: [springCloud, Eureka]
 tags: [springCloud, Eureka]
 ---
 

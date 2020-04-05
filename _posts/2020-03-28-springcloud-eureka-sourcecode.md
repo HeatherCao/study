@@ -3,7 +3,7 @@ layout: post
 title: springcloud组件之一——Eureka源码
 keywords: Eureka
 description: eureka 源码
-categories: hi
+categories: [springCloud, Eureka]
 tags: [springCloud, Eureka]
 ---
 
