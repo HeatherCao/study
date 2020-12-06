@@ -1,10 +1,10 @@
 ---
 layout: post
-title: springboot rabbitmq
+title: rabbitmq
 keywords: rabbitmq
 description: rabbitmq
-categories: [springboot, rabbitmq]
-tags: [springboot, rabbitmq]
+categories: [message queue, rabbitmq]
+tags: [message queue, rabbitmq]
 ---
 
 # rabbitmq如何解决消息重复消费以及幂等性问题？
@@ -175,7 +175,7 @@ rabbitmq中有种交换机叫DLX，全称Data-Letter-Exchange, 可以称之为�
     2.用户希望通过手机远程遥控家里的智能设备在指定的时间进行工作。这时候就可以将用户指令发送到延迟队列，当指令设定的时间到了再将指令推送到智能设备
     
 设置消息的过期时间
-![](/images/2020-12-1-spring-rabbitmq.png)
+![](/images/2020-12-1-spring-rabbitmq-01.png)
 
 设置队列的过期时间
 
@@ -201,4 +201,43 @@ rabbitmq中有种交换机叫DLX，全称Data-Letter-Exchange, 可以称之为�
 3.消费者单独设置
 
     @RabbitListener( queues = "${com.gupaoedu.thirdqueue}" ,autoStartup = "true")
+    
+# 如何保证rabbitmq的高可用性？
+rabbitmq基于主从（非分布式）做高可用性的
+
+有三种模式：单机模式、普通集群模式、镜像集群模式。
+
+1.单机模式
+
+    生产模式不可用
+    
+2.普通集群模式
+
+    多台机器上启动多个rabbitMQ实例，但是你创建的queue（元数据+实际数据）只会放在一个rabbitMQ实例 A 上，其他实例都会同步queue的元数据（元数据可以理解为queue的位置、信息，便于其他实例拉取数据的）。
+    如果消费者消费信息的时候，实际连接的是另一个实例 B ，那个B会根据元数据去到A上拉取数据过来。
+    
+![](/images/2020-12-1-spring-rabbitmq-02.png)
+
+没做到所谓的分布式，就是个普通集群。
+消费者每次随机连接一个实例拉取数据（增加了拉取数据的开销），要么就是消费者固定连接到那个queue所在的实例消费数据（导致单实例性能瓶颈）。
+
+若A宕机了（丢失数据），则其他实例无法拉取数据。即使开启了消息持久化，让rabbitMQ落地存储消息，消息不一定会丢，得等A恢复了才能继续拉取数据。
+
+    总结：并没有高可用性可言。该方案主要是提高吞吐量，让集群中多个节点来服务某个queue的读写操作。
+    
+3.镜像集群模式
+
+![](/images/2020-12-1-spring-rabbitmq-03.png)
+
+这种模式才是高可用模式. 与普通集群模式的主要区别在于. 无论queue的元数据还是queue中的消息都会同时存在与多个实例上.
+
+好处：是不担心宕机，因为所有实例的数据都是一样的。
+
+坏处：（1）性能开销大，消息同步所有机器导致网络带宽压力和消耗很重；
+
+　　　（2）无扩展性可言，若某queue负载很重，你再加机器，新增的机器也包含了这个queue的所有数据，并没有办法线性拓展你的queue（非分布式的）；
+    
+
+
+    
 
