@@ -166,3 +166,17 @@ Processor接口还提供了init方法，init初始化方法可以将ProcessorCon
 2、 在process方法中，每接受到一条消息，将字符串进行拆分，并更新到状态存储中，生成新的流。
 
 3、 在puncuate方法中，迭代本地状态存储并将流提交到下个处理节点进行处理。
+
+
+# kafka connector
+Source：负责将外部数据写入到kafka的topic中。
+Sink：负责从kafka中读取数据到自己需要的地方去，比如读取到HDFS，hbase等。
+
+1.开发自定义的Source
+
+    开发自定义的Source 需要继承实现SourceConnector和SourceTask这两个抽象类，实现抽象类中的未实现的方法或者重写抽象类中的方法。
+    
+2.开发自定义的Sink
+
+    开发自定义的Sink 需要继承实现SinkConnector和SinkTask这两个抽象类，实现抽象类中的未实现的方法或者重写抽象类中的方法。
+    
